@@ -26,24 +26,24 @@ resource "azurerm_network_security_group" "main" {
     name                       = "Allow-SSH"
     priority                   = 100
     direction                  = "Inbound"
-    access                      = "Allow"
-    protocol                    = "Tcp"
-    source_port_range           = "*"
-    destination_port_range      = "22"
-    source_address_prefix       = "*"
-    destination_address_prefix  = "*"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
   }
 
   security_rule {
     name                       = "Allow-Backend"
     priority                   = 110
     direction                  = "Inbound"
-    access                      = "Allow"
-    protocol                    = "Tcp"
-    source_port_range           = "*"
-    destination_port_range      = "8080"
-    source_address_prefix       = "*"
-    destination_address_prefix  = "*"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8080"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
   }
 }
 
@@ -52,7 +52,10 @@ resource "azurerm_public_ip" "main" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   allocation_method   = "Static"
+  sku                 = "Standard"
 }
+
+
 
 resource "azurerm_network_interface" "main" {
   name                = "tfsimulator-nic"
@@ -76,7 +79,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
   name                = "tfsimulator-backend-vm"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
-  size                = "Standard_B2s"
+  size                = "Standard_B2ats_v2"
   admin_username      = var.admin_username
 
   network_interface_ids = [
@@ -85,7 +88,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
 
   admin_ssh_key {
     username   = var.admin_username
-    public_key = file(var.ssh_public_key_path)
+    public_key = filebase64(var.ssh_public_key_path)
   }
 
   os_disk {
@@ -100,5 +103,5 @@ resource "azurerm_linux_virtual_machine" "backend" {
     version   = "latest"
   }
 
-  custom_data = base64encode(file("install_backend.sh"))
+  custom_data = filebase64("install_backend.sh")
 }

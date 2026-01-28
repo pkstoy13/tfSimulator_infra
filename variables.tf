@@ -1,7 +1,7 @@
 variable "location" {
   description = "Azure region"
   type        = string
-  default     = "eastus2"
+  default     = "canadacentral"
 }
 
 variable "resource_group_name" {
@@ -19,5 +19,5 @@ variable "admin_username" {
 variable "ssh_public_key_path" {
   description = "Path to SSH public key"
   type        = string
-  default     = "C:/Users/pksto/.ssh/id_rsa-utf8.pub"
+  default     = "C:/Users/pksto/.ssh/id_rsa.pub"
 }
