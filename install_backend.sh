@@ -26,10 +26,10 @@ echo "cloning tfSimulator repo"
 git clone https://github.com/pkstoy13/tfSimulator.git $BACKEND_DIR
 
 # run Spring boot app
-echo "running Spring Boot App"
-cd $BACKEND_DIR/api
-mvn clean package
-java -jar target/*.jar &
+#echo "running Spring Boot App"
+#cd $BACKEND_DIR/api
+#mvn clean package
+#java -jar target/*.jar &
 
 echo "backend set up and running"
 
