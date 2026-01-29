@@ -25,6 +25,9 @@ sudo chown $USER:$USER $BACKEND_DIR
 echo "cloning tfSimulator repo"
 git clone https://github.com/pkstoy13/tfSimulator.git $BACKEND_DIR
 
+# fix repo ownership
+sudo chown -R azureuser:azureuser /opt/tfSimulator
+
 # run Spring boot app
 #echo "running Spring Boot App"
 #cd $BACKEND_DIR/api
