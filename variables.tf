@@ -19,5 +19,5 @@ variable "admin_username" {
 variable "ssh_public_key_path" {
   description = "Path to SSH public key"
   type        = string
-  default     = "C:/Users/pksto/.ssh/id_rsa.pub"
+  default     = "C:/Users/pksto/.ssh/tfsimulator_rsa.pub"
 }

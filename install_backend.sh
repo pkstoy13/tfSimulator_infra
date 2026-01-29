@@ -1,4 +1,4 @@
-# exit if any command fails
+#!/bin/bash
 set -e
 
 # update packages
@@ -8,7 +8,7 @@ sudo apt upgrade -y
 
 # install backend packages
 echo "Installing Java and other required packages"
-sudo apt install -y openjdk-25-jdk maven git
+sudo apt install -y openjdk-17-jdk maven git
 
 # install docker
 echo "installing Docker"
